@@ -1,0 +1,56 @@
+<template>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>Column 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, index) in tableData" :key="index">
+          <td><select v-model="row.col1">
+              <option value="a">a</option>
+              <option value="b">b</option>
+              <option value="c">c</option>
+            </select>
+            </td>
+          <td>
+            <input type="text" v-model="row.column2" />
+          </td>
+          <td>
+            <input type="text" v-model="row.column3" />
+          </td>
+          <td>
+            <button @click="deleteRow(index)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button @click="addRow">Add Row</button>
+    <button @click="saveData">Save Data</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tableData: [{ column1: "", column2: "", column3: "" }]
+    };
+  },
+  methods: {
+    addRow() {
+      this.tableData.push({ column1: "", column2: "", column3: "" });
+    },
+    deleteRow(index) {
+      this.tableData.splice(index, 1);
+    },
+    saveData() {
+      const jsonData = JSON.stringify(this.tableData);
+      console.log(jsonData); // This will log the JSON data to the console
+    }
+  }
+};
+</script>
