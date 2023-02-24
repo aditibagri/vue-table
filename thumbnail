@@ -1,0 +1,47 @@
+<template>
+  <v-container>
+    <v-row>
+      <v-col v-for="(doc, index) in documents" :key="index" cols="12">
+        <v-card @click="selectDocument(doc)">
+          <v-img :src="doc.thumbnail" />
+          <v-card-title>{{ doc.name }}</v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-iframe v-if="selectedDocument" :src="selectedDocument.url" />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      documents: [
+        {
+          name: 'Document 1',
+          thumbnail: '/path/to/document1-thumbnail.jpg',
+          url: '/path/to/document1.pdf',
+        },
+        {
+          name: 'Document 2',
+          thumbnail: '/path/to/document2-thumbnail.jpg',
+          url: '/path/to/document2.pdf',
+        },
+        // add more documents as needed
+      ],
+      selectedDocument: null,
+    };
+  },
+  methods: {
+    selectDocument(doc) {
+      this.selectedDocument = doc;
+    },
+  },
+};
+</script>
