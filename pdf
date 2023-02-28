@@ -1,0 +1,28 @@
+<template>
+  <div class="my-pdf-viewer">
+    <pdf-viewer :src="pdfUrl" />
+  </div>
+</template>
+
+<script>
+import PDFViewer from "./PDFViewer.vue";
+
+export default {
+  components: {
+    PDFViewer,
+  },
+  props: {
+    pdfUrl: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style>
+.my-pdf-viewer {
+  width: 100%;
+  height: 100%;
+}
+</style>
